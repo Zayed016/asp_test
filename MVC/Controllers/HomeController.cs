@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Models;
+using Microsoft.AspNetCore.Http;
 
 
 
@@ -26,10 +27,11 @@ namespace MVC.Controllers
             ViewData["Modes"] = Modes;
 
             ViewBag.Collection = array;
-
+            HttpContext.Session.SetString("UserData", "sdfsdf");
             return View();
         }
-       
+
+        [HttpPost]
         public IActionResult GetAbout()
         {
             string firstName = HttpContext.Request.Form["name"];
@@ -38,8 +40,9 @@ namespace MVC.Controllers
 
         public IActionResult Contact()
         {
-
+            
             ViewData["Message"] = "Time to play the game";
+            ViewData["ses"]=HttpContext.Session.GetString("UserData");
             return View();
         }
 
