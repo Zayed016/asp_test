@@ -4,15 +4,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MVC.Services;
 
 namespace MVC.Controllers
 {
+   
     public class WebController : Controller
     {
+        MyService MyService= new MyService();
         // GET: Web
-        public ActionResult Index()
+        public ActionResult Index(int id)
         {
-            return View();
+            var all=MyService.first(id);
+            return Ok(all);
         }
 
         // GET: Web/Details/5
