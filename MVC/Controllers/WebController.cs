@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MVC.Services;
+using Microsoft.EntityFrameworkCore;
+using System.Data.SqlClient;
+
 
 namespace MVC.Controllers
 {
@@ -16,7 +19,9 @@ namespace MVC.Controllers
         public ActionResult Index(int id)
         {
             var all=MyService.first(id);
-            return Ok(all);
+
+            ViewBag.name=all;
+            return View();
         }
 
         // GET: Web/Details/5
